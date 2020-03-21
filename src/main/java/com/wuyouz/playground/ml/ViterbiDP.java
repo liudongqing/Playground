@@ -57,7 +57,7 @@ public class ViterbiDP {
 
         for (int i = 0; i < states.length; i++) {
             V[0][i] = new VPair(states[i],
-                    startP[i].getP() * emit.get(startP[i].getState(), Y[0]).doubleValue());
+                    startP[i].getP() * emit.get(startP[i].getState(), Y[0]));
         }
         System.out.println(Arrays.toString(V[0]));
 
@@ -65,8 +65,8 @@ public class ViterbiDP {
             for (int j = 0; j < states.length; j++) {
                 double maxProb = 0;
                 for (int k = 0; k < states.length; k++) {
-                    double temp = V[i - 1][k].getP() * trans.get(V[i - 1][k].getState(), states[j]).doubleValue()
-                            * emit.get(states[j], Y[i]).doubleValue();
+                    double temp = V[i - 1][k].getP() * trans.get(V[i - 1][k].getState(), states[j])
+                            * emit.get(states[j], Y[i]);
                     if (temp > maxProb) {
                         maxProb = temp;
                     }
